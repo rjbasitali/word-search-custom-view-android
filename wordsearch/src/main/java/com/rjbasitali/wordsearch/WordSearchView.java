@@ -1,23 +1,21 @@
-package com.rjbasitali.wordssearch.views;
+package com.rjbasitali.wordsearch;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.support.v4.view.MotionEventCompat;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.rjbasitali.wordssearch.model.Word;
-import com.rjbasitali.wordssearch.util.FontManager;
+import androidx.core.view.MotionEventCompat;
 
 /**
  * Created by Basit on 12/10/2016.
  */
 
-public class WordsGrid extends View {
+public class WordSearchView extends View {
 
     private int rows, columns, width, height, rectWH;
 
@@ -27,36 +25,37 @@ public class WordsGrid extends View {
     private Cell[][] cells;
     private Cell cellDragFrom, cellDragTo;
 
-    private Paint textPaint;
-    private Paint highlighterPaint;
-    private Paint gridLinePaint;
+    private Paint textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private Paint highlighterPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private Paint gridLinePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+
+    private Typeface typeface;
 
     private OnWordSearchedListener onWordSearchedListener;
     private int wordsSearched = 0;
     private int[] highlighterColors = {0x4400649C, 0x44ffd900, 0x447fbb00};
 
-    public WordsGrid(Context context, AttributeSet attrs) {
+    public WordSearchView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
     private void init() {
 
-        textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         textPaint.setSubpixelText(true);
         textPaint.setColor(0xcc000000);
         textPaint.setTextSize(70);
         textPaint.setTextAlign(Paint.Align.LEFT);
-        textPaint.setTypeface(FontManager.getTypeface(getContext(), FontManager.POYNTER));
+        if(typeface != null) {
+            textPaint.setTypeface(typeface);
+        }
 //        textPaint.setAlpha(foregroundOpacity);
 
-        highlighterPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         highlighterPaint.setStyle(Paint.Style.STROKE);
         highlighterPaint.setStrokeWidth(110);
         highlighterPaint.setStrokeCap(Paint.Cap.ROUND);
         highlighterPaint.setColor(0x4400649C);
 
-        gridLinePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         gridLinePaint.setStyle(Paint.Style.STROKE);
         gridLinePaint.setStrokeWidth(4);
         gridLinePaint.setStrokeCap(Paint.Cap.SQUARE);
@@ -199,6 +198,12 @@ public class WordsGrid extends View {
         invalidate();
     }
 
+    public void setTypeface(Typeface typeface) {
+        this.typeface = typeface;
+        textPaint.setTypeface(typeface);
+        invalidate();
+    }
+
     private boolean isFromToValid(Cell cellDragFrom, Cell cellDragTo) {
         return (Math.abs(cellDragFrom.getRow() - cellDragTo.getRow()) == Math.abs(cellDragFrom.getColumn() - cellDragTo.getColumn()))
                 || cellDragFrom.getRow() == cellDragTo.getRow() || cellDragFrom.getColumn() == cellDragTo.getColumn();
@@ -250,7 +255,7 @@ public class WordsGrid extends View {
     }
 
     public interface OnWordSearchedListener {
-        public void wordFound(String word);
+        void wordFound(String word);
     }
 
     public void setOnWordSearchedListener(OnWordSearchedListener onWordSearchedListener) {

@@ -1,4 +1,4 @@
-package com.rjbasitali.wordssearch.model;
+package com.rjbasitali.wordsearch;
 
 /**
  * Created by Basit on 12/11/2016.

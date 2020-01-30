@@ -23,7 +23,7 @@
             android:textColor="@android:color/white"/>
     </FrameLayout>
 
-    <com.rjbasitali.wordssearch.views.WordsGrid
+    <com.rjbasitali.wordsearch.WordSearchView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/wordsGrid"/>
