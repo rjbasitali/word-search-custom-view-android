@@ -20,7 +20,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Strikethrough"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white"
+            android:gravity="center"/>
     </FrameLayout>
 
     <com.rjbasitali.wordsearch.WordSearchView

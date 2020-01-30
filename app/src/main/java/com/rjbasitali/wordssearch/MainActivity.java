@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         TextView tvStrikethrough = findViewById(R.id.tv_strikethrough);
+        tvStrikethrough.setText("Word\nSome\nSearching\nFog");
         tvStrikethrough.setPaintFlags(tvStrikethrough.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
         wordsGrid = findViewById(R.id.wordsGrid);
