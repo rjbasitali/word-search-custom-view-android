@@ -39,7 +39,19 @@ public class MainActivity extends AppCompatActivity {
 
         wordsGrid = findViewById(R.id.wordsGrid);
         wordsGrid.setTypeface(FontManager.getTypeface(this, FontManager.POYNTER));
-        wordsGrid.setLetters(letters);
+
+        wordsGrid.setLetters(new char[][] {
+                "ASCDEFGHIJ".toCharArray(),
+                "AECDEFGHIJ".toCharArray(),
+                "AACDEFGHIJ".toCharArray(),
+                "ARCWEFGHIJ".toCharArray(),
+                "ACCDOFGHIJ".toCharArray(),
+                "AHCGERGHIJ".toCharArray(),
+                "AICDEFDHIJ".toCharArray(),
+                "ANCDEFGHIJ".toCharArray(),
+                "AGCSOMEHIJ".toCharArray(),
+                "ABCDEFGHIJ".toCharArray()
+        });
 
         wordsGrid.setWords(
                 new Word("WORD", false, 3, 3, 6, 6),
