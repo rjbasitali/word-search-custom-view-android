@@ -33,8 +33,11 @@ or Maven:
 
 ```
 wordsGrid = findViewById(R.id.wordsGrid);
+
+// to set font
 wordsGrid.setTypeface(FontManager.getTypeface(this, FontManager.POYNTER));
 
+// create a 10x10 grid of characters which includes words to be found
 wordsGrid.setLetters(new char[][] {
         "ASCDEFGHIJ".toCharArray(),
         "AECDEFGHIJ".toCharArray(),
@@ -48,12 +51,14 @@ wordsGrid.setLetters(new char[][] {
         "ABCDEFGHIJ".toCharArray()
 });
 
+// words with their respective starting and ending X and Y values in the grid
 wordsGrid.setWords(
         new Word("WORD", false, 3, 3, 6, 6),
         new Word("SOME", false, 8, 3, 8, 6),
         new Word("SEARCHING", false, 0, 1, 8, 1),
         new Word("FOG", false, 3, 5, 5, 3));
 
+// callback when a word is found
 wordsGrid.setOnWordSearchedListener(new WordSearchView.OnWordSearchedListener() {
     @Override
     public void wordFound(String word) {
